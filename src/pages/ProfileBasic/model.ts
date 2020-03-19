@@ -3,6 +3,7 @@ import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { BasicGood } from './data.d';
 import { queryBasicProfile } from './service';
+import dynamicModal from '@/utils/dynamicModel';
 
 export interface StateType {
   basicGoods: BasicGood[];
@@ -51,4 +52,4 @@ const Model: ModelType = {
   },
 };
 
-export default Model;
+export default dynamicModal(Model);

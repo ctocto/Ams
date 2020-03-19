@@ -1,4 +1,4 @@
-import { Button, Divider, Dropdown, Form, Icon, Menu, message } from 'antd';
+import { Button, Divider, Dropdown, Form, Icon, Menu, message, Card } from 'antd';
 import React, { useState, useRef } from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
@@ -139,7 +139,7 @@ const TableList: React.FC<TableListProps> = () => {
   ];
 
   return (
-    <PageHeaderWrapper>
+    <Card>
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
@@ -216,7 +216,7 @@ const TableList: React.FC<TableListProps> = () => {
           values={stepFormValues}
         />
       ) : null}
-    </PageHeaderWrapper>
+    </Card>
   );
 };
 

@@ -23,7 +23,7 @@ import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
 import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logo.svg';
-import PageTabs, { DataSourceItem } from '@/components/GlobalHeader/PageTabs';
+import PageTabs, { DataSourceItem, PageTabsConent } from '@/components/GlobalHeader/PageTabs';
 
 const noMatch = (
   <Result
@@ -128,6 +128,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     settings,
     location = { pathname: '/' },
   } = props;
+  console.log(props)
   /**
    * constructor
    */
@@ -196,23 +197,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       {...props}
       {...settings}
     >
-      <PageTabs
-        routeData={props.route}
-        itemRender = {
-          (tab: DataSourceItem) => (
-            <Authorized authority={authorized!.authority} noMatch={noMatch}>
-              {
-                tab.component
-                  ? (<Route render={
-                  () => <tab.component></tab.component>
-                }></Route>)
-                  : undefined
-
-              }
-            </Authorized>
-            )
-        }
-        />
+      <PageTabs routeData={props.route}/>
+      {/* <PageTabsConent /> */}
     </ProLayout>
   );
 };

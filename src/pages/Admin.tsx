@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Card, Typography, Alert, Icon } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 export default (): React.ReactNode => {
   console.log('component update')
@@ -9,7 +8,7 @@ export default (): React.ReactNode => {
     return () => console.log('component will unmount');
   }, [])
   return (
-    <PageHeaderWrapper content=" 这个页面只有 admin 权限才能查看">
+    <div>
       <Card>
         <p>admin</p>
         <Alert
@@ -34,6 +33,6 @@ export default (): React.ReactNode => {
         </a>
         。
       </p>
-    </PageHeaderWrapper>
+    </div>
   )
 };

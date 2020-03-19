@@ -1,38 +1,40 @@
 import { AnyAction, Reducer } from 'redux';
 
 import { EffectsCommandMap } from 'dva';
-import { AdvancedProfileData } from './data.d';
-import { queryAdvancedProfile } from './service';
+import { BasicGood } from '../data';
+import { queryBasicProfile } from '../service';
 import dynamicModal from '@/utils/dynamicModel';
+
+export interface StateType {
+  basicGoods: BasicGood[];
+}
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: AdvancedProfileData) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: AdvancedProfileData;
+  state: StateType;
   effects: {
-    fetchAdvanced: Effect;
+    fetchBasic: Effect;
   };
   reducers: {
-    show: Reducer<AdvancedProfileData>;
+    show: Reducer<StateType>;
   };
 }
 
 const Model: ModelType = {
-  namespace: 'profileAdvanced',
+  namespace: 'hhahhahahhahahh',
 
   state: {
-    advancedOperation1: [],
-    advancedOperation2: [],
-    advancedOperation3: [],
+    basicGoods: [],
   },
 
   effects: {
-    *fetchAdvanced(_, { call, put }) {
-      const response = yield call(queryAdvancedProfile);
+    *fetchBasic(_, { call, put }) {
+      const response = yield call(queryBasicProfile);
       yield put({
         type: 'show',
         payload: response,
@@ -50,4 +52,4 @@ const Model: ModelType = {
   },
 };
 
-export default dynamicModal(Model);
+export default Model;

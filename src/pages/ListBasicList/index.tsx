@@ -62,12 +62,17 @@ class ListBasicList extends Component<
 
   componentDidMount() {
     const { dispatch } = this.props;
+    console.log(1111111111111)
     dispatch({
       type: 'listBasicList/fetch',
       payload: {
         count: 5,
       },
     });
+  }
+
+  componentDidUpdate() {
+    console.log(22222222222)
   }
 
   showModal = () => {
@@ -280,7 +285,6 @@ class ListBasicList extends Component<
     };
     return (
       <>
-        <PageHeaderWrapper>
           <div className={styles.standardList}>
             <Card bordered={false}>
               <Row>
@@ -357,7 +361,6 @@ class ListBasicList extends Component<
               />
             </Card>
           </div>
-        </PageHeaderWrapper>
 
         <Modal
           title={done ? null : `任务${current ? '编辑' : '添加'}`}
@@ -384,8 +387,11 @@ export default connect(
     loading: {
       models: { [key: string]: boolean };
     };
-  }) => ({
-    listBasicList,
-    loading: loading.models.listBasicList,
-  }),
+  }) => {
+    console.log(4444444444)
+    return {
+      listBasicList,
+      loading: loading.models.listBasicList,
+    };
+  },
 )(Form.create<ListBasicListProps>()(ListBasicList));

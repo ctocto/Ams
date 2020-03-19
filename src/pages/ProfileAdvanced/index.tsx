@@ -22,6 +22,7 @@ import classNames from 'classnames';
 import { connect } from 'dva';
 import { AdvancedProfileData } from './data.d';
 import styles from './style.less';
+import { dynamicConnect } from '@/utils/dynamicModel';
 
 const { Step } = Steps;
 const ButtonGroup = Button.Group;
@@ -262,24 +263,7 @@ class ProfileAdvanced extends Component<
       ),
     };
     return (
-      <PageHeaderWrapper
-        title="单号：234231029431"
-        extra={action}
-        className={styles.pageHeader}
-        content={description}
-        extraContent={extra}
-        tabActiveKey={tabActiveKey}
-        onTabChange={this.onTabChange}
-        tabList={[
-          {
-            key: 'detail',
-            tab: '详情',
-          },
-          {
-            key: 'rule',
-            tab: '规则',
-          },
-        ]}
+      <Card
       >
         <div className={styles.main}>
           <GridContent>
@@ -367,12 +351,12 @@ class ProfileAdvanced extends Component<
             </Card>
           </GridContent>
         </div>
-      </PageHeaderWrapper>
+      </Card>
     );
   }
 }
 
-export default connect(
+export default dynamicConnect(
   ({
     profileAdvanced,
     loading,
@@ -381,8 +365,11 @@ export default connect(
     loading: {
       effects: { [key: string]: boolean };
     };
-  }) => ({
-    profileAdvanced,
-    loading: loading.effects['profileAdvanced/fetchAdvanced'],
-  }),
+  }) => {
+    console.log(5555555555)
+    return {
+      profileAdvanced,
+      loading: loading.effects['profileAdvanced/fetchAdvanced'],
+    };
+  },
 )(ProfileAdvanced);

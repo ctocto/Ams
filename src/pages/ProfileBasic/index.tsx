@@ -6,6 +6,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import { BasicProfileDataType } from './data.d';
 import styles from './style.less';
+import { dynamicConnect } from '@/utils/dynamicModel';
 
 const progressColumns = [
   {
@@ -64,6 +65,7 @@ class ProfileBasic extends Component<
 
   render() {
     const { profileBasic, loading } = this.props;
+    console.log(this.props)
     const { basicGoods, basicProgress } = profileBasic;
     let goodsData: typeof basicGoods = [];
     if (basicGoods.length) {
@@ -154,7 +156,6 @@ class ProfileBasic extends Component<
       },
     ];
     return (
-      <PageHeaderWrapper>
         <Card bordered={false}>
           <Descriptions title="退款申请" style={{ marginBottom: 32 }}>
             <Descriptions.Item label="取货单号">1000000000</Descriptions.Item>
@@ -189,12 +190,11 @@ class ProfileBasic extends Component<
             columns={progressColumns}
           />
         </Card>
-      </PageHeaderWrapper>
     );
   }
 }
 
-export default connect(
+export default dynamicConnect(
   ({
     profileBasic,
     loading,
@@ -203,8 +203,11 @@ export default connect(
     loading: {
       effects: { [key: string]: boolean };
     };
-  }) => ({
-    profileBasic,
-    loading: loading.effects['profileBasic/fetchBasic'],
-  }),
+  }) => {
+    console.log(666666666)
+    return {
+      profileBasic,
+      loading: loading.effects['profileBasic/fetchBasic'],
+    };
+  },
 )(ProfileBasic);
